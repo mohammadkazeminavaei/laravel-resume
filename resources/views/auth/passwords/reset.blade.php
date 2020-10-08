@@ -1,65 +1,60 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+@extends('layouts.master')
+@section('title' , 'تغییر رمز')
+@section('main')
+                <!-- Start Content -->
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12 ">
+                            <div class="px-3">
+                                <div class="form-ui dt-sl dt-sn pt-4"> 
+                                    <div class="section-title title-wide mb-1 no-after-title-wide">
+                                        <h2 class="font-weight-bold">ورود به دیجی کالا</h2>
+                                    </div>
+                                    @if ($errors->any())
+                                                <div class="message-light">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $item)
+                                                             <li>{{ $item }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                    @endif
+                                    <form method="POST" action=" {{ route('password.update') }} " novalidate>
+                                        @csrf
+                                        <input type="hidden" name="token" value="{{ $token }}">
+                                        <div class="form-row-title">
+                                            <h3>لطفا ایمیل خودتان را وارد کنید</h3>
+                                        </div>
+                                        <div class="form-row with-icon">
+                                            <input type="email" name="email" class="input-ui pr-2" required>
+                                            <i class="mdi mdi-account-circle-outline"></i>
+                                        </div>
+                                        <div class="form-row-title">
+                                            <h3>لطفا رمز خودتان را وارد کنید</h3>
+                                        </div>
+                                        <div class="form-row with-icon">
+                                            <input type="password" name="password" class="input-ui pr-2" required>
+                                            <i class="mdi mdi-account-circle-outline"></i>
+                                        </div>
+                                        <div class="form-row-title">
+                                            <h3>لطفا رمز خودتان را تایید کنید</h3>
+                                        </div>
+                                        <div class="form-row with-icon">
+                                            <input type="password" name="password_confirmation" class="input-ui pr-2" required>
+                                            <i class="mdi mdi-account-circle-outline"></i>
+                                        </div>
+                                        <div class="form-row mt-3">
+                                            <button type="submit" class="btn-primary-cm btn-with-icon mx-auto w-100">
+                                                <i class="mdi mdi-login-variant"></i>
+                                                تایید
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <!-- End Content -->
 @endsection
+

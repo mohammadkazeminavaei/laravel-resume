@@ -1,47 +1,50 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+@extends('layouts.master')
+@section('title' , 'بازیابی رمز')
+@section('main')
+                <!-- Start Content -->
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12 ">
+                            <div class="px-3">
+                                <div class="form-ui dt-sl dt-sn pt-4"> 
+                                    <div class="section-title title-wide mb-1 no-after-title-wide">
+                                        <h2 class="font-weight-bold">بازیابی رمز</h2>
+                                    </div>
+                                    @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                    </div>
+                                    @endif
+                                    @if ($errors->any())
+                                    <div class="message-light">
+                                        <ul>
+                                            @foreach ($errors->all() as $item)
+                                                 <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                    <form method="POST" action=" {{ route('password.email') }} " novalidate>
+                                        @csrf
+                                        <div class="form-row-title">
+                                            <h3>لطفا ایمیل خودتان را وارد کنید</h3>
+                                        </div>
+                                        <div class="form-row with-icon">
+                                            <input type="email" name="email" class="input-ui pr-2" placeholder="ایمیل  خود را وارد نمایید" required>
+                                            <i class="mdi mdi-account-circle-outline"></i>
+                                        </div>
+                                        <div class="form-row mt-3">
+                                            <button type="submit" class="btn-primary-cm btn-with-icon mx-auto w-100">
+                                                <i class="mdi mdi-login-variant"></i>
+                                                ارسال لینک بازیابی رمز
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <!-- End Content --> 
 @endsection
+
