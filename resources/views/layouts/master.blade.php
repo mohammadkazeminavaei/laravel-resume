@@ -66,7 +66,7 @@
                                               <div class="col-6 text-center">
                                                   <a href=" {{ route('password.request') }} ">
                                                       <i class="mdi mdi-lock-reset"></i>
-                                                      <span class="d-block">تغییر رمز</span>
+                                                      <span class="d-block">بازیابی کلمه عبور</span>
                                                   </a>
                                               </div>
                                               <div class="col-6 text-center">
