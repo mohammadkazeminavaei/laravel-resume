@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('title' , 'ورود')
+@section('scriptrecaptcha')
+   <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+@endsection
 @section('main')
 
                 <!-- Start Content -->
@@ -50,16 +53,7 @@
                                                 ورود به دیجی کالا
                                             </button>
                                         </div>
-                                        @if (Route::has('password.request'))
-                                        <div class="form-footer text-right mt-3">
-                                            <span class="d-block font-weight-bold">رمزتان را فراموش کردید؟</span>
-                                            <a href=" {{ route('password.request') }} " class="d-inline-block mr-3 mt-2">بازیابی رمز عبور</a>
-                                        </div>
-                                            
-                                        @endif
-                                        <div class="form-footer text-right mt-3">
-                                            <span class="d-block font-weight-bold">کاربر جدید هستید؟</span>
-                                            <a href=" {{ route('register') }} " class="d-inline-block mr-3 mt-2">ثبت نام در دیجی کالا</a>
+                                    <div class="g-recaptcha form-footer text-right mt-3" data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}">
                                         </div>
                                     </form>
                                 </div>

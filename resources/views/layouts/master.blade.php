@@ -21,6 +21,7 @@
     <link rel="stylesheet" href=" {{ asset('/assets/css/main.css') }} ">
     <link rel="stylesheet" href=" {{ asset('/assets/css/colors/default.css') }} " id="colorswitch">
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scriptrecaptcha')
 </head>
 
 <body>

@@ -175,5 +175,6 @@ return [
         'size'                  => 'اندازه',
         'terms'                 => 'شرایط',
         'province'              => 'استان',
+        'g-recaptcha-response'              => 'ری کپچا'
     ],
 ];
